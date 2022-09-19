@@ -73,3 +73,4 @@ btnStart.addEventListener('click', () => {
     }
   }, 1000);
 });
+// чек
