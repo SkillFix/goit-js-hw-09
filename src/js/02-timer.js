@@ -68,6 +68,7 @@ function timeConverter({ days, hours, minutes, seconds }) {
   refs.minutesVal.textContent = addLeadingZero(minutes);
   refs.secondsVal.textContent = addLeadingZero(seconds);
 }
+// xtr
 // добавляем событие на кнопку старт
 // при клике функция отрабатывает
 refs.btnStart.addEventListener('click', onBtnClick);
