@@ -32,7 +32,7 @@ img {
   display: block;
   max-width: 100%;
 }
-.flatpickr_wrap {
+.flatpickr__wrap {
   display: flex;
   justify-content: center;
   gap: 10px;

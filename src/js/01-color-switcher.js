@@ -17,3 +17,18 @@ btnStop.addEventListener('click', () => {
   clearInterval(timerId);
   btnStart.disabled = false;
 });
+
+// btnStart.addEventListener('click', onChangeColor);
+// btnStop.addEventListener('click', offChangeColor);
+
+// function onChangeColor() {
+//   timerId = setInterval(() => {
+//     document.body.style.background = getRandomHexColor();
+//   }, 1000);
+//   btnStart.disabled = true;
+// }
+
+// function offChangeColor() {
+//   clearInterval(timerId);
+//   btnStart.disabled = false;
+// }

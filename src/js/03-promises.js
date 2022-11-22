@@ -5,7 +5,7 @@ const amount = document.querySelector('input[name="amount"]');
 const btnCreatePromise = document.querySelector('button[type="submit"]');
 
 function createPromise(position, delay) {
-  const promise = new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     setTimeout(() => {
       const shouldResolve = Math.random() > 0.3;
       if (shouldResolve) {
@@ -15,15 +15,19 @@ function createPromise(position, delay) {
       }
     }, delay);
   });
-  return promise;
 }
 
 btnCreatePromise.addEventListener('click', e => {
   e.preventDefault();
+  btnCreatePromise.disabled = true;
+
   let firstDelay = Number(delay.value);
   let delayStep = Number(step.value);
-  for (let i = 0; i < amount.value; i++) {
-    createPromise(1 + i, firstDelay + i * delayStep)
+  let sumDelaysStep = 0;
+
+  for (let i = 1; i < amount.value; i += 1) {
+    sumDelaysStep += delayStep;
+    createPromise(i, firstDelay + i * delayStep)
       .then(({ position, delay }) => {
         Notiflix.Notify.success(
           `✅ Fulfilled promise ${position} in ${delay}ms`
@@ -33,6 +37,12 @@ btnCreatePromise.addEventListener('click', e => {
         Notiflix.Notify.failure(
           `❌ Rejected promise ${position} in ${delay}ms`
         );
+      })
+      .finally(() => {
+        const totalDelay = (firstDelay += sumDelaysStep);
+        setTimeout(() => {
+          btnCreatePromise.disabled = false;
+        }, totalDelay);
       });
   }
 });
