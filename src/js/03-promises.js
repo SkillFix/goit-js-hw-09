@@ -18,16 +18,14 @@ function createPromise(position, delay) {
 }
 
 btnCreatePromise.addEventListener('click', e => {
-  e.preventDefault();
   btnCreatePromise.disabled = true;
 
   let firstDelay = Number(delay.value);
   let delayStep = Number(step.value);
-  let sumDelaysStep = 0;
+  let sumDelaysStep = firstDelay;
 
-  for (let i = 1; i < amount.value; i += 1) {
-    sumDelaysStep += delayStep;
-    createPromise(i, firstDelay + i * delayStep)
+  for (let i = 0; i < amount.value; i += 1) {
+    createPromise(i + 1, sumDelaysStep)
       .then(({ position, delay }) => {
         Notiflix.Notify.success(
           `✅ Fulfilled promise ${position} in ${delay}ms`
@@ -44,5 +42,6 @@ btnCreatePromise.addEventListener('click', e => {
           btnCreatePromise.disabled = false;
         }, totalDelay);
       });
+    sumDelaysStep += delayStep;
   }
 });
